@@ -1,14 +1,14 @@
 import React from "react";
 import Layout from "../../components/Layout";
 
-class LeaderboardPage extends React.Component {
+class AddQuestionPage extends React.Component {
     render() {
         return (
-            <Layout title="Leaderboard">
+            <Layout title="Add">
                 <div className="row">
                     <div className="col-md-3"></div>
                     <div className="col-md-6">
-                        <h1>Leader board Page</h1>
+                        <h1>Add Question Page</h1>
                     </div>
                     <div className="col-md-3"></div>
                 </div>
@@ -17,4 +17,4 @@ class LeaderboardPage extends React.Component {
     }
 }
 
-export default LeaderboardPage;
+export default AddQuestionPage;

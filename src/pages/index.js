@@ -1,9 +1,11 @@
-import AddPage from "./add/AddPage";
+import AddQuestionPage from "./add/AddQuestionPage";
 import LeaderboardPage from "./leaderboard/LeaderboardPage";
+import LoginPage from "./login/LoginPage";
 import HomePage from "./home/HomePage";
 
 export {
-    AddPage,
+    AddQuestionPage,
     LeaderboardPage,
+    LoginPage,
     HomePage
 };
