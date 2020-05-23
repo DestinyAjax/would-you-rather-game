@@ -1,9 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import { logoutUser } from "../../store/actions/usersAction";
 import "./styles.css";
 
 class TopNav extends React.Component {
+
+    logout = () => {
+        const { dispatch, history } = this.props;
+        dispatch(logoutUser());
+        history.push("/");
+    }
+
     render() {
         const { active, authUser } = this.props;
 
@@ -20,7 +28,7 @@ class TopNav extends React.Component {
                         <Link to="/leaderboard" className={`${active === 'Leaderboard' ? 'active' : ''}`}>Leader Board</Link>
                     </li>
                     <li style={{float: 'right'}}>
-                        <a href="#about">Logout</a>
+                        <a href="#logout" onClick={this.logout}>Logout</a>
                     </li>
                     {authUser && authUser.name && (
                         <li style={{float: 'right'}}>

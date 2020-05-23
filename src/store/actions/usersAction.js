@@ -1,4 +1,4 @@
-import { GET_USERS_SUCCESS, GET_USERS_FAILED, AUTHENTICATE_USER } from "../types/index";
+import { GET_USERS_SUCCESS, GET_USERS_FAILED, AUTHENTICATE_USER, LOGOUT } from "../types/index";
 import { _getUsers } from "../../api/index";
 
 export const getUsersAction = () => {
@@ -16,4 +16,8 @@ export const getUsersAction = () => {
 export const authenticateUser = (payload) => ({
     type: AUTHENTICATE_USER,
     payload
+});
+
+export const logoutUser = () => ({
+    type: LOGOUT
 });

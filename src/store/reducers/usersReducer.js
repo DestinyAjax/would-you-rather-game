@@ -1,5 +1,5 @@
 import { initialState } from "../initialStore";
-import { GET_USERS_SUCCESS, AUTHENTICATE_USER } from "../types/index";
+import { GET_USERS_SUCCESS, AUTHENTICATE_USER, LOGOUT } from "../types/index";
 
 const usersReducer = (state = initialState, {type, payload}) => {
     switch (type) {
@@ -12,6 +12,11 @@ const usersReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 authUser: payload
+            }
+        case LOGOUT:
+            return {
+                ...state,
+                authUser: {}
             }
         default:
             return state;
