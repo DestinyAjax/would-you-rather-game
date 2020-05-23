@@ -54,7 +54,9 @@ class HomePage extends React.Component {
                                 <form onSubmit={this.onSubmit}>
                                     <select value={this.state.selectedUser} className="form-control" onChange={this.onChangeHandler}>
                                         {options.map(user => (
-                                            <option key={user.id} value={JSON.stringify(user)}>{user.name}</option>
+                                            <option key={user.id} value={JSON.stringify(user)}>
+                                                {user.name}
+                                            </option>
                                         ))}
                                     </select>
                                     <Button type="submit" title="Sign in" style={{marginTop: '20px', width: '100%'}} />

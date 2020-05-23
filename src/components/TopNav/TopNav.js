@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
 import "./styles.css";
 
 class TopNav extends React.Component {
     render() {
-        const { active } = this.props;
+        const { active, authUser } = this.props;
 
         return (
             <ul>
@@ -19,12 +20,28 @@ class TopNav extends React.Component {
                         <Link to="/leaderboard" className={`${active === 'Leaderboard' ? 'active' : ''}`}>Leader Board</Link>
                     </li>
                     <li style={{float: 'right'}}>
-                        <a className="active" href="#about">Logout</a>
+                        <a href="#about">Logout</a>
                     </li>
+                    {authUser && authUser.name && (
+                        <li style={{float: 'right'}}>
+                            <a href="#user">
+                                <img 
+                                    src={require('../../assets/images/sarah.png')} 
+                                    style={{width: '30px', height: '30px'}} 
+                                    alt={authUser.name} 
+                                /> {" "}
+                                {authUser.name}
+                            </a>
+                        </li>
+                    )}
                 </div>
             </ul>
         );
     }
 }
 
-export default TopNav;
+const mapStateToProps = state => ({
+    authUser: state.users.authUser
+});
+
+export default connect(mapStateToProps)(withRouter(TopNav));
