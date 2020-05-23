@@ -1,9 +1,44 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import Layout from "../../components/Layout";
 import { Card, CardBody, CardHeader} from "reactstrap";
+import { getUsersAction, authenticateUser } from "../../store/actions/usersAction";
+import { Button } from "../../components/index";
 
 class HomePage extends React.Component {
+
+    state = {
+        selectedUser: {}
+    };
+
+    componentDidMount() {
+        const { dispatch } = this.props;
+        dispatch(getUsersAction());
+    }
+
+    onChangeHandler = (event) => {
+        event.persist(); // preventing SyntheticEvent pooling
+        this.setState(() => ({
+            selectedUser: event.target.value
+        }));
+    }
+
+    onSubmit = event => {
+        event.preventDefault();
+        const { dispatch, history } = this.props;
+        const user = JSON.parse(this.state.selectedUser)
+        dispatch(authenticateUser(user));
+        history.push("/home");
+    }
+
     render() {
+        const { users } = this.props;
+        let options = [];
+        for (const property in users) {
+            options.push(users[property]);
+        }
+
         return (
             <Layout title="Home">
                 <div className="row">
@@ -16,10 +51,13 @@ class HomePage extends React.Component {
                             </CardHeader>
                             <CardBody>
                                 <h2 className="text-center">Sign in</h2>
-                                <form>
-                                    <select className="form-control">
-                                        <option value="">Hell</option>
+                                <form onSubmit={this.onSubmit}>
+                                    <select value={this.state.selectedUser} className="form-control" onChange={this.onChangeHandler}>
+                                        {options.map(user => (
+                                            <option key={user.id} value={JSON.stringify(user)}>{user.name}</option>
+                                        ))}
                                     </select>
+                                    <Button type="submit" title="Sign in" style={{marginTop: '20px', width: '100%'}} />
                                 </form>
                             </CardBody>
                         </Card>
@@ -31,4 +69,8 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+const mapStateToProps = state => ({
+    users: state.users.users
+});
+
+export default connect(mapStateToProps)(withRouter(HomePage));

@@ -6,7 +6,7 @@ const Button = props => {
     const { title, onClickHandler } = props;
 
     return (
-        <button onClick={onClickHandler} className="btn btn-md btn-primary" {...props}>
+        <button onClick={onClickHandler} className="btn btn-md btn-success" {...props}>
             {title}
         </button>
     );
@@ -14,7 +14,8 @@ const Button = props => {
 
 Button.propTypes = {
     title: PropTypes.string.isRequired,
-    onClickHandler: PropTypes.func.isRequired
+    onClickHandler: PropTypes.func,
+    type: PropTypes.string.isRequired
 };
 
 export default Button;
