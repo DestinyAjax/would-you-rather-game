@@ -3,5 +3,8 @@ export const initialState = {
     answeredQuestions: [],
     unansweredQuestions: [],
     users: {},
-    pollDetails: {}
+    pollDetails: {},
+    questions: {},
+    error: "",
+    loading: false
 };

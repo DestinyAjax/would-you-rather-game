@@ -1,7 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import Layout from "../../components/Layout";
+import { withRouter } from "react-router-dom";
 import { Card, CardBody, CardHeader} from "reactstrap";
 import { Button } from "../../components/index";
+import { createNewQuestion } from "../../store/actions/questionAction";
 
 class AddQuestionPage extends React.Component {
 
@@ -19,10 +22,20 @@ class AddQuestionPage extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
+        const { dispatch, authUser, history } = this.props;
+        const { option1, option2 } = this.state;
+        const payload = {
+            optionOneText: option1, 
+            optionTwoText: option2, 
+            author: authUser.id
+        }
+        dispatch(createNewQuestion(payload));
+        history.push("/home");
     }
 
     render() {
         const { option1, option2 } = this.state;
+        const { loading } = this.props;
 
         return (
             <Layout title="Add">
@@ -37,7 +50,7 @@ class AddQuestionPage extends React.Component {
                                 <p>Please complete the question</p>
                                 <h5>Would you rather ...</h5>
                                 <form onSubmit={this.onSubmit}>
-                                    <div classNam="form-group">
+                                    <div className="form-group">
                                         <input 
                                             className="form-control" 
                                             name="option1" 
@@ -52,7 +65,7 @@ class AddQuestionPage extends React.Component {
                                             <span>OR</span>
                                         </div>
                                     </div>
-                                    <div classNam="form-group">
+                                    <div className="form-group">
                                         <input 
                                             className="form-control" 
                                             name="option2" 
@@ -62,7 +75,7 @@ class AddQuestionPage extends React.Component {
                                             required
                                         />
                                     </div><hr/>
-                                    <Button type="submit" title="Submit" style={{width: '100%'}} />
+                                    <Button type="submit" title={`${!loading ? "Submit" : "Loading..."}`} style={{width: '100%'}} />
                                 </form>
                             </CardBody>
                         </Card>
@@ -96,4 +109,9 @@ class AddQuestionPage extends React.Component {
     }
 }
 
-export default AddQuestionPage;
+const mapStateToProps = state => ({
+    loading: state.ui.loading,
+    authUser: state.users.authUser
+});
+
+export default connect(mapStateToProps)(withRouter(AddQuestionPage));
