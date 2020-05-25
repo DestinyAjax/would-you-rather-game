@@ -17,6 +17,7 @@ const PollDetailsCard = props => {
                     <div className="detailsWrapper">
                         <h4>Options</h4>
                         <OptionDetails details={optionOne} users={users} />
+                        <OptionDetails details={optionTwo} users={users} />
                     </div>
                 </div>
             </CardBody>
