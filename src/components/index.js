@@ -4,6 +4,8 @@ import TopNav from "./TopNav/TopNav";
 import ProtectedRoute from "./ProtectedRoute";
 import PollCard from "./PollCard/PollCard";
 import Image from "./Image/Image";
+import PollDetailsCard from "./PollDetailsCard/PollDetailsCard";
+import OptionDetails from "./OptionDetails/OptionDetails";
 
 export {
     InputField,
@@ -11,5 +13,7 @@ export {
     TopNav,
     ProtectedRoute,
     PollCard,
-    Image
+    Image,
+    PollDetailsCard,
+    OptionDetails
 }

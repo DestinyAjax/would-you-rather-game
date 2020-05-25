@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 import { Card, CardBody, CardHeader} from "reactstrap";
 import { Button, Image } from "../index";
 
 const PollCard = props => {
     const { question, users } = props;
     const author = users[question.author];
+    const router = useHistory();
 
     return (
         <div style={{marginBottom: '10px'}}>
@@ -26,6 +28,7 @@ const PollCard = props => {
                                 className="btn btn-md btn-outline-success" 
                                 title="View Poll" 
                                 style={{width: '100%'}}
+                                onClick={() => router.push(`/question/${question.id}`)}
                             />
                         </div>
                     </div>

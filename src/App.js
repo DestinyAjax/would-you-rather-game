@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { HomePage, LeaderboardPage, AddQuestionPage, LoginPage } from "./pages";
+import { HomePage, LeaderboardPage, AddQuestionPage, LoginPage, PollDetailsPage } from "./pages";
 import { ProtectedRoute } from "./components/index";
 
 const App = () => {
@@ -11,6 +11,7 @@ const App = () => {
         <ProtectedRoute exact path="/home" component={HomePage} />
         <ProtectedRoute path="/leaderboard" component={LeaderboardPage} />
         <ProtectedRoute path="/add" component={AddQuestionPage} />
+        <ProtectedRoute path="/question/:question_id" component={PollDetailsPage} />
       </Switch>
     </Router>
   );
