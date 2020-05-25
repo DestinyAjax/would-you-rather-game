@@ -20,11 +20,15 @@ export const createNewQuestion = payload => {
 export const getAllQuestions = () => {
     return async dispatch => {
         try {
+            dispatch(isLoading(true));
             const questions = await _getQuestions();
             dispatch({ type: GET_ALL_QUESTIONS, payload: questions });
         }
         catch(error) {
             dispatch({ type: GET_QUESTIONS_FAILED, error });
+        }
+        finally {
+            dispatch(isLoading(false));
         }
     }
 }
