@@ -27,18 +27,25 @@ class HomePage extends React.Component {
     render() {
         const { questions, loading, authUser, users } = this.props;
         const { activeTab } = this.state;
+        // filter unanswered questions based on the current user votes
         const unanswered = Object.values(questions).filter(question => {
             if (!question.optionOne.votes.includes(authUser.id) && !question.optionTwo.votes.includes(authUser.id)) {
                 return false;
             }
             return true;
         });
+
+        // filter answered questions based on the current user votes
         const answered = Object.values(questions).filter(question => {
             if (question.optionOne.votes.includes(authUser.id) || question.optionTwo.votes.includes(authUser.id)) {
                 return false;
             }
             return true;
-        })
+        });
+
+        // sort questions based on the timestamp
+        const sortedUnanswered = unanswered.reverse().sort((a,b) => a.timestamp > b.timestamp);
+        const sortedAnswered = answered.reverse().sort((a,b) => a.timestamp > b.timestamp);
 
         return (
             <Layout title="Home">
@@ -64,12 +71,12 @@ class HomePage extends React.Component {
                                     </Nav>
                                     <TabContent activeTab={activeTab} className="tab-content">
                                         <TabPane tabId="1">
-                                            {unanswered && unanswered.map(question => (
+                                            {sortedUnanswered && sortedUnanswered.map(question => (
                                                 <PollCard key={question.id} users={users} question={question}/>
                                             ))}
                                         </TabPane>
                                         <TabPane tabId="2">
-                                            {answered && answered.map(question => (
+                                            {sortedAnswered && sortedAnswered.map(question => (
                                                 <PollCard key={question.id} users={users} question={question}/>
                                             ))}
                                         </TabPane>
