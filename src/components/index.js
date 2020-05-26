@@ -7,6 +7,7 @@ import Image from "./Image/Image";
 import PollDetailsCard from "./PollDetailsCard/PollDetailsCard";
 import OptionDetails from "./OptionDetails/OptionDetails";
 import PollAnswerCard from "./PollAnswer/PollAnswerCard";
+import Ranking from "./Ranking/Ranking";
 
 export {
     InputField,
@@ -17,5 +18,6 @@ export {
     Image,
     PollDetailsCard,
     OptionDetails,
-    PollAnswerCard
+    PollAnswerCard,
+    Ranking
 }

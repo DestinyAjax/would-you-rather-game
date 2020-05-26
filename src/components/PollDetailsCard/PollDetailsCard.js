@@ -6,7 +6,6 @@ const PollDetailsCard = props => {
     const { question, users, auth } = props;
     const { author, optionOne, optionTwo } = question;
 
-
     return (
         <Card>
             <CardHeader>
