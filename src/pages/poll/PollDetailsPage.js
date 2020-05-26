@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Layout from "../../components/Layout";
 import { PollAnswerCard, PollDetailsCard } from "../../components";
-import { togglePollDetails } from "../../store/actions/questionAction";
 
 class PollDetailsPage extends React.Component {
 
@@ -12,13 +11,11 @@ class PollDetailsPage extends React.Component {
     };
 
     componentDidMount() {
-        const { match: { params }, questions, dispatch } = this.props;
+        const { match: { params }, questions } = this.props;
         const question_id = params.question_id;
         this.setState(() => ({
             pollDetails: questions[question_id]
         }));
-
-        dispatch(togglePollDetails(false));
     };
 
     componentDidUpdate(prevProps) {

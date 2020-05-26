@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { logoutUser } from "../../store/actions/usersAction";
+import { Image } from "../index";
 import "./styles.css";
 
 class TopNav extends React.Component {
@@ -33,11 +34,7 @@ class TopNav extends React.Component {
                     {authUser && authUser.name && (
                         <li style={{float: 'right'}}>
                             <a href="#user">
-                                <img 
-                                    src={require('../../assets/images/sarah.png')} 
-                                    style={{width: '30px', height: '30px'}} 
-                                    alt={authUser.name} 
-                                /> {" "}
+                                <Image user={`${authUser.id}`} className="pic" style={{width: '30px', height: '30px'}} />
                                 {authUser.name}
                             </a>
                         </li>
@@ -49,7 +46,7 @@ class TopNav extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    authUser: state.users.authUser
+    authUser: state.users.authUser,
 });
 
 export default connect(mapStateToProps)(withRouter(TopNav));

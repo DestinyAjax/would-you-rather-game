@@ -8,7 +8,7 @@ const Image = props => {
     else if (props.user === "johndoe") {
         userImage = <img src={require('../../assets/images/john.png')} alt="john" {...props} />;
     }
-    return <div>{userImage}</div>
+    return <span>{userImage}</span>
 }
 
 export default Image;

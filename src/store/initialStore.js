@@ -6,6 +6,5 @@ export const initialState = {
     pollDetails: {},
     questions: {},
     error: "",
-    loading: false,
-    showPollDetails: false
+    loading: false
 };

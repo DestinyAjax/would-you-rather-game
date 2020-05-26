@@ -3,13 +3,14 @@ import { Card, CardBody, CardHeader} from "reactstrap";
 import { Image, OptionDetails } from "../index";
 
 const PollDetailsCard = props => {
-    const { question, users } = props;
+    const { question, users, auth } = props;
     const { author, optionOne, optionTwo } = question;
+
 
     return (
         <Card>
             <CardHeader>
-                <span>Asked by {`${users[author] ? users[author].name : ''}`}</span>
+                <span><strong>Asked by {`${users[author] ? users[author].name : ''}`}</strong></span>
             </CardHeader>
             <CardBody style={{padding: '5px'}}>
                 <div className="wrapper" style={{border: 0}}>
@@ -19,8 +20,8 @@ const PollDetailsCard = props => {
                     <div className="detailsWrapper">
                         <div>
                             <h4>Options</h4>
-                            <OptionDetails details={optionOne} users={users} />
-                            <OptionDetails details={optionTwo} users={users} />
+                            <OptionDetails auth={auth} details={optionOne} users={users} />
+                            <OptionDetails auth={auth} details={optionTwo} users={users} />
                         </div>
                     </div>
                 </div>

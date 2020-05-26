@@ -1,4 +1,4 @@
-import { CREATE_QUESTION_FAILED, GET_ALL_QUESTIONS, GET_QUESTIONS_FAILED, IS_POLL_SHOWN } from "../types";
+import { CREATE_QUESTION_FAILED, GET_ALL_QUESTIONS, GET_QUESTIONS_FAILED } from "../types";
 import { _saveQuestion, _getQuestions, _saveQuestionAnswer } from "../../api";
 import { isLoading } from "../actions/uiActions";
 
@@ -42,8 +42,3 @@ export const saveQuestionAnswer = payload => {
         catch(err) {}
     }
 }
-
-export const togglePollDetails = payload => ({
-    type: IS_POLL_SHOWN,
-    payload
-});
