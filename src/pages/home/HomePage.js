@@ -77,7 +77,7 @@ class HomePage extends React.Component {
                                         </TabPane>
                                         <TabPane tabId="2">
                                             {sortedAnswered && sortedAnswered.map(question => (
-                                                <PollCard key={question.id} users={users} question={question}/>
+                                                <PollCard type="answered" key={question.id} users={users} question={question}/>
                                             ))}
                                         </TabPane>
                                     </TabContent>

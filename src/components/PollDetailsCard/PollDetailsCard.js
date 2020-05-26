@@ -8,16 +8,20 @@ const PollDetailsCard = props => {
 
     return (
         <Card>
-            <CardHeader>Asked by {`${users[author] ? users[author].name : ''}`}</CardHeader>
+            <CardHeader>
+                <span>Asked by {`${users[author] ? users[author].name : ''}`}</span>
+            </CardHeader>
             <CardBody style={{padding: '5px'}}>
                 <div className="wrapper" style={{border: 0}}>
                     <div className="avatarWrapper">
                         <Image user={`${users[author] ? users[author].id : ''}`} className="pic" />
                     </div>
                     <div className="detailsWrapper">
-                        <h4>Options</h4>
-                        <OptionDetails details={optionOne} users={users} />
-                        <OptionDetails details={optionTwo} users={users} />
+                        <div>
+                            <h4>Options</h4>
+                            <OptionDetails details={optionOne} users={users} />
+                            <OptionDetails details={optionTwo} users={users} />
+                        </div>
                     </div>
                 </div>
             </CardBody>

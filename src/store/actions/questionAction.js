@@ -1,5 +1,5 @@
 import { CREATE_QUESTION_FAILED, GET_ALL_QUESTIONS, GET_QUESTIONS_FAILED } from "../types";
-import { _saveQuestion, _getQuestions } from "../../api";
+import { _saveQuestion, _getQuestions, _saveQuestionAnswer } from "../../api";
 import { isLoading } from "../actions/uiActions";
 
 export const createNewQuestion = payload => {
@@ -30,5 +30,14 @@ export const getAllQuestions = () => {
         finally {
             dispatch(isLoading(false));
         }
+    }
+}
+
+export const saveQuestionAnswer = payload => {
+    return async dispatch => {
+        try {
+            await _saveQuestionAnswer(payload);
+        }
+        catch(err) {}
     }
 }

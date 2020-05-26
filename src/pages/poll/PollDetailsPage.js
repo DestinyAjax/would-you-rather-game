@@ -2,7 +2,7 @@ import React  from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Layout from "../../components/Layout";
-import { PollDetailsCard } from "../../components";
+import { WithPollDetails } from "../../components";
 
 class PollDetailsPage extends React.Component {
 
@@ -20,14 +20,14 @@ class PollDetailsPage extends React.Component {
 
     render() {
         const { pollDetails } = this.state;
-        const { users } = this.props;
+        const { users, authUser } = this.props;
         
         return (
             <Layout title="Poll Details">
                 <div className="row">
                     <div className="col-md-3"></div>
                     <div className="col-md-6">
-                        <PollDetailsCard users={users} question={pollDetails} />
+                        <WithPollDetails auth={authUser} users={users} question={pollDetails} />
                     </div>
                     <div className="col-md-3"></div>
                 </div>
@@ -38,7 +38,8 @@ class PollDetailsPage extends React.Component {
 
 const mapStateToProps = state => ({
     questions: state.questions.questions,
-    users: state.users.users
+    users: state.users.users,
+    authUser: state.users.authUser
 });
 
 export default connect(mapStateToProps)(withRouter(PollDetailsPage));
