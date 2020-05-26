@@ -27,6 +27,7 @@ class PollAnswerCard extends React.Component {
             qid: question.id,
             answer: option
         };
+        
         dispatch(saveQuestionAnswer(payload));
     }
 
@@ -73,7 +74,7 @@ class PollAnswerCard extends React.Component {
                                             {option2}
                                         </label>
                                     </div>
-                                    <Button type="Submit" title="submit" style={{width: '100%'}} />
+                                    <Button type="submit" title="submit" style={{width: '100%'}} />
                                 </form>
                             </div>
                         </div>

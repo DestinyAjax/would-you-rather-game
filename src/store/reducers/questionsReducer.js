@@ -1,4 +1,4 @@
-import { GET_ALL_QUESTIONS } from "../types";
+import { GET_ALL_QUESTIONS, IS_POLL_SHOWN } from "../types";
 import { initialState } from "../initialStore";
 
 const questionsReducer = (state = initialState, {type, payload}) => {
@@ -7,6 +7,11 @@ const questionsReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 questions: payload
+            }
+        case IS_POLL_SHOWN:
+            return {
+                ...state,
+                showPollDetails: payload
             }
         default:
             return state;

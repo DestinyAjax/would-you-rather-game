@@ -1,4 +1,4 @@
-import { CREATE_QUESTION_FAILED, GET_ALL_QUESTIONS, GET_QUESTIONS_FAILED } from "../types";
+import { CREATE_QUESTION_FAILED, GET_ALL_QUESTIONS, GET_QUESTIONS_FAILED, IS_POLL_SHOWN } from "../types";
 import { _saveQuestion, _getQuestions, _saveQuestionAnswer } from "../../api";
 import { isLoading } from "../actions/uiActions";
 
@@ -17,10 +17,10 @@ export const createNewQuestion = payload => {
     }
 }
 
-export const getAllQuestions = () => {
+export const getAllQuestions = (loader) => {
     return async dispatch => {
         try {
-            dispatch(isLoading(true));
+            if(loader) dispatch(isLoading(true))
             const questions = await _getQuestions();
             dispatch({ type: GET_ALL_QUESTIONS, payload: questions });
         }
@@ -28,7 +28,7 @@ export const getAllQuestions = () => {
             dispatch({ type: GET_QUESTIONS_FAILED, error });
         }
         finally {
-            dispatch(isLoading(false));
+            if(loader) dispatch(isLoading(false));
         }
     }
 }
@@ -37,7 +37,13 @@ export const saveQuestionAnswer = payload => {
     return async dispatch => {
         try {
             await _saveQuestionAnswer(payload);
+            dispatch(getAllQuestions(false));
         }
         catch(err) {}
     }
 }
+
+export const togglePollDetails = payload => ({
+    type: IS_POLL_SHOWN,
+    payload
+});

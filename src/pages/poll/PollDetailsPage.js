@@ -2,7 +2,8 @@ import React  from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Layout from "../../components/Layout";
-import { WithPollDetails } from "../../components";
+import { PollAnswerCard, PollDetailsCard } from "../../components";
+import { togglePollDetails } from "../../store/actions/questionAction";
 
 class PollDetailsPage extends React.Component {
 
@@ -11,23 +12,44 @@ class PollDetailsPage extends React.Component {
     };
 
     componentDidMount() {
-        const { match: { params }, questions } = this.props;
+        const { match: { params }, questions, dispatch } = this.props;
         const question_id = params.question_id;
         this.setState(() => ({
             pollDetails: questions[question_id]
         }));
+
+        dispatch(togglePollDetails(false));
     };
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.questions !== this.props.questions) {
+            const { match: { params }, questions } = this.props;
+            const question_id = params.question_id;
+            this.setState(() => ({
+                pollDetails: questions[question_id]
+            }));
+        }
+    }
 
     render() {
         const { pollDetails } = this.state;
         const { users, authUser } = this.props;
+        let checker = false;
+        if (pollDetails.optionOne && pollDetails.optionTwo) {
+            if (pollDetails.optionOne.votes.includes(authUser.id)|| pollDetails.optionTwo.votes.includes(authUser.id)) {
+                checker = true;
+            }
+        }
         
         return (
             <Layout title="Poll Details">
                 <div className="row">
                     <div className="col-md-3"></div>
                     <div className="col-md-6">
-                        <WithPollDetails auth={authUser} users={users} question={pollDetails} />
+                        {!checker ? 
+                            <PollAnswerCard auth={authUser} users={users} question={pollDetails}/> :
+                            <PollDetailsCard auth={authUser} users={users} question={pollDetails} />
+                        }
                     </div>
                     <div className="col-md-3"></div>
                 </div>

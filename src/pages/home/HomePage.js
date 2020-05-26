@@ -13,7 +13,7 @@ class HomePage extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(getAllQuestions());
+        dispatch(getAllQuestions(true));
     };
 
     toggle = (tab) => {
@@ -28,7 +28,7 @@ class HomePage extends React.Component {
         const { questions, loading, authUser, users } = this.props;
         const { activeTab } = this.state;
         // filter unanswered questions based on the current user votes
-        const unanswered = Object.values(questions).filter(question => {
+        const answered = Object.values(questions).filter(question => {
             if (!question.optionOne.votes.includes(authUser.id) && !question.optionTwo.votes.includes(authUser.id)) {
                 return false;
             }
@@ -36,7 +36,7 @@ class HomePage extends React.Component {
         });
 
         // filter answered questions based on the current user votes
-        const answered = Object.values(questions).filter(question => {
+        const unanswered = Object.values(questions).filter(question => {
             if (question.optionOne.votes.includes(authUser.id) || question.optionTwo.votes.includes(authUser.id)) {
                 return false;
             }
