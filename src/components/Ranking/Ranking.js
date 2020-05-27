@@ -24,7 +24,7 @@ const Ranking = props => {
 
                 return (
                     <Card key={user.id} style={{marginBottom: '20px'}}>
-                        <CardBody style={{padding: '5px'}}>
+                        <CardBody style={{padding: '5px', border: '2px solid green'}}>
                             <div className="wrapper" style={{border: 0}}>
                                 <div className="avatarWrapper">
                                     <Image user={`${user.id}`} className="pic" />
