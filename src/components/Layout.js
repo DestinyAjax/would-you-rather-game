@@ -13,7 +13,7 @@ class Layout extends React.Component {
         return (
             <div>
                 <TopNav active={this.props.title}/>
-                <div className="container">
+                <div className="container" style={{marginTop: '30px'}}>
                     {this.props.children}
                 </div>
             </div>

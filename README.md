@@ -19,6 +19,7 @@ Please follow the instructions below to run or install the application:
 * Clone the project using `git clone`.
 * On the root folder of the project run `npm install` or `yarn install` to add dependencies of the project.
 * Then run `npm run start` or `yarn start` to start the project. 
+* To run the code in production install serve globally by running `yarn add global serve` and run `yarn build` to generate the build then run `serve -s build` to launch.
 
 ### Note:
 
