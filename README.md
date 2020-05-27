@@ -1,6 +1,6 @@
 # Would You Rather Game App
 
-Would You Rather Game App is a game of choice which allows the users/players of the application to choose one from two options from questions asked by other users/players, create their own questions, see statistics of questions answered and unanswered. The application was built with React.js while the state was managed by Redux and Redux Thunk for side effects..
+Would You Rather Game App is a game of choice which allows the users/players of the application to choose one from two options from questions asked by other users/players, create their own questions, see statistics of questions answered and unanswered. The application was built with React.js while the state was managed by Redux and Redux Thunk for side effects.
 
 ## Features
 

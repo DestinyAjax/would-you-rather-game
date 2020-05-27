@@ -8,7 +8,7 @@ const Ranking = props => {
     const sortedUsers = allUsers.sort((a,b) => {
         const total_a = a.questions.length + Object.keys(a.answers).length;
         const total_b = b.questions.length + Object.keys(b.answers).length;
-        return total_a > total_b;
+        return total_b - total_a;
     });
 
     return (
