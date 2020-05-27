@@ -24,4 +24,6 @@ Please follow the instructions below to run or install the application:
 ### Note:
 
 The application will run on development mode.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser while in production mode open [http://localhost:5000](http://localhost:5000).
+
+#### Enjoy!
