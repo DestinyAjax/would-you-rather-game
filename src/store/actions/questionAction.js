@@ -1,4 +1,4 @@
-import { CREATE_QUESTION_FAILED, GET_ALL_QUESTIONS, GET_QUESTIONS_FAILED } from "../types";
+import { CREATE_QUESTION_FAILED, GET_ALL_QUESTIONS, GET_QUESTIONS_FAILED, STORE_POLL_DETAILS } from "../types";
 import { _saveQuestion, _getQuestions, _saveQuestionAnswer } from "../../api";
 import { isLoading } from "../actions/uiActions";
 
@@ -35,10 +35,31 @@ export const getAllQuestions = (loader) => {
 
 export const saveQuestionAnswer = payload => {
     return async dispatch => {
+        await _saveQuestionAnswer(payload);
+        const questions = await _getQuestions();
+        const questionDetails = questions[payload.qid];
+        dispatch(updatePollDetails(questionDetails));
+    }
+};
+
+export const storePollDetails = question_id => {
+    return async dispatch => {
         try {
-            await _saveQuestionAnswer(payload);
-            dispatch(getAllQuestions(false));
+            dispatch(isLoading(true))
+            const questions = await _getQuestions();
+            const questionDetails = questions[question_id];
+            dispatch(updatePollDetails(questionDetails));
+        } 
+        catch(error) {
+            dispatch({ type: GET_QUESTIONS_FAILED, error });
         }
-        catch(err) {}
+        finally {
+            dispatch(isLoading(false));
+        }
     }
 }
+
+export const updatePollDetails = payload => ({
+    type: STORE_POLL_DETAILS,
+    payload
+});

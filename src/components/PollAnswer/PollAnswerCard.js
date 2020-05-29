@@ -21,10 +21,10 @@ class PollAnswerCard extends React.Component {
     onSubmit = event => {
         event.preventDefault();
         const { option } = this.state;
-        const { dispatch, auth, question } = this.props;
+        const { dispatch, authUser, pollDetails } = this.props;
         const payload =  {
-            authedUser: auth.id,
-            qid: question.id,
+            authedUser: authUser.id,
+            qid: pollDetails.id,
             answer: option
         };
         
@@ -33,8 +33,8 @@ class PollAnswerCard extends React.Component {
 
     render() {
         const { option } = this.state;
-        const { question, users } = this.props;
-        const { author, optionOne, optionTwo } = question;
+        const { pollDetails, users } = this.props;
+        const { author, optionOne, optionTwo } = pollDetails;
         const option2 = optionTwo ? optionTwo.text : "";
         const option1 = optionOne ? optionOne.text : "";
 
@@ -115,6 +115,12 @@ class PollAnswerCard extends React.Component {
             </Card>
         );
     }
-}
+};
 
-export default connect(null)(withRouter(PollAnswerCard));
+const mapStateToProps = state => ({
+    authUser: state.users.authUser,
+    users: state.users.users,
+    pollDetails: state.questions.pollDetails,
+});
+
+export default connect(mapStateToProps)(withRouter(PollAnswerCard));

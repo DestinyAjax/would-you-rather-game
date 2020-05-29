@@ -12,14 +12,12 @@ class LeaderboardPage extends React.Component {
     }
 
     render() {
-        const { users } = this.props;
-        
         return (
             <Layout title="Leaderboard">
                 <div className="row">
                     <div className="col-md-3"></div>
                     <div className="col-md-6">
-                        <Ranking users={users} />
+                        <Ranking />
                     </div>
                     <div className="col-md-3"></div>
                 </div>
@@ -28,8 +26,4 @@ class LeaderboardPage extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    users: state.users.users
-});
-
-export default connect(mapStateToProps)(LeaderboardPage);
+export default connect(null)(LeaderboardPage);
